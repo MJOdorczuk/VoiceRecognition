@@ -40,14 +40,54 @@ namespace VoiceRecognition
                 });
             opener.Commands.AddRange(new Command[] { open_paint });
             //// SOUNDER MENU
-            Command volume_up_a_bit = new Command("up", 
+            Command volume_up_a_bit = new Command("little up", 
                 () => {
                     jack.Print_in_log("up a bit");
                     CoreAudioDevice defaultPlaybackDevice = new CoreAudioController().DefaultPlaybackDevice;
-                    Debug.WriteLine("Current volume:" + defaultPlaybackDevice.Volume);
+                    if(defaultPlaybackDevice.Volume < 98)
+                    {
+                        defaultPlaybackDevice.Volume += 2;
+                    }
+                    else defaultPlaybackDevice.Volume = 100;
                     return main;
                 });
-            sounder.Commands.AddRange(new Command[] { volume_up_a_bit });
+            Command volume_up_a_lot = new Command("up a lot",
+                () =>
+                {
+                    jack.Print_in_log("up a lot");
+                    CoreAudioDevice defaultPlaybackDevice = new CoreAudioController().DefaultPlaybackDevice;
+                    if (defaultPlaybackDevice.Volume < 80)
+                    {
+                        defaultPlaybackDevice.Volume += 20;
+                    }
+                    else defaultPlaybackDevice.Volume = 100;
+                    return main;
+                });
+            Command volume_down_a_bit = new Command("little down",
+                () =>
+                {
+                    jack.Print_in_log("down a bit");
+                    CoreAudioDevice defaultPlaybackDevice = new CoreAudioController().DefaultPlaybackDevice;
+                    if (defaultPlaybackDevice.Volume > 2)
+                    {
+                        defaultPlaybackDevice.Volume -= 2;
+                    }
+                    else defaultPlaybackDevice.Volume = 0;
+                    return main;
+                });
+            Command volume_down_a_lot = new Command("down a lot",
+                () =>
+                {
+                    jack.Print_in_log("down a lot");
+                    CoreAudioDevice defaultPlaybackDevice = new CoreAudioController().DefaultPlaybackDevice;
+                    if (defaultPlaybackDevice.Volume > 20)
+                    {
+                        defaultPlaybackDevice.Volume -= 20;
+                    }
+                    else defaultPlaybackDevice.Volume = 0;
+                    return main;
+                });
+            sounder.Commands.AddRange(new Command[] { volume_up_a_bit, volume_up_a_lot, volume_down_a_bit, volume_down_a_lot });
             //// BRIGHTER MENU
             //// POPULAR
             List<Command> popular = new List<Command>();

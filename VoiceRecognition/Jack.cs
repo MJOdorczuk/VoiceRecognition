@@ -15,6 +15,7 @@ namespace VoiceRecognition
     public partial class Jack : Form
     {
         SpeechRecognitionEngine sre;
+        bool srEnabled = false;
         private Menu currentMenu;
         public Jack()
         {
@@ -28,6 +29,7 @@ namespace VoiceRecognition
             DisableVC_button.Enabled = true;
             sre.RecognizeAsync(RecognizeMode.Multiple);
             EnableVC_button.Enabled = false;
+            srEnabled = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -59,6 +61,11 @@ namespace VoiceRecognition
             sre.LoadGrammarAsync(grammar);
             sre.SetInputToDefaultAudioDevice();
             sre.SpeechRecognized += Sre_SpeechRecognized;
+            if(srEnabled)
+            {
+                sre.RecognizeAsyncStop();
+                sre.RecognizeAsync(RecognizeMode.Multiple);
+            }
         }
 
         private void DisableVC_button_Click(object sender, EventArgs e)
@@ -66,6 +73,7 @@ namespace VoiceRecognition
             EnableVC_button.Enabled = true;
             sre.RecognizeAsyncStop();
             DisableVC_button.Enabled = false;
+            srEnabled = false;
         }
 
         public void Print_in_log(string s)
