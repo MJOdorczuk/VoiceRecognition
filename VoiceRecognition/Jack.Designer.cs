@@ -58,11 +58,11 @@
             this.EnableVC_button.Name = "EnableVC_button";
             this.EnableVC_button.Size = new System.Drawing.Size(123, 23);
             this.EnableVC_button.TabIndex = 2;
-            this.EnableVC_button.Text = "Enable voic control";
+            this.EnableVC_button.Text = "Enable voice control";
             this.EnableVC_button.UseVisualStyleBackColor = true;
             this.EnableVC_button.Click += new System.EventHandler(this.EnableVC_button_Click);
             // 
-            // Form1
+            // Jack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -70,7 +70,7 @@
             this.Controls.Add(this.EnableVC_button);
             this.Controls.Add(this.DisableVC_button);
             this.Controls.Add(this.richTextBox1);
-            this.Name = "Form1";
+            this.Name = "Jack";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Speech recogintion test";
             this.Load += new System.EventHandler(this.Form1_Load);

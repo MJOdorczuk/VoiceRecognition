@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +12,8 @@ namespace VoiceRecognition
 {
     static class MenuGenerator
     {
+        
+
         public static Menu GenericMenu(Jack jack)
         {
             List<Menu> menus = new List<Menu>();
@@ -89,6 +93,12 @@ namespace VoiceRecognition
                 });
             sounder.Commands.AddRange(new Command[] { volume_up_a_bit, volume_up_a_lot, volume_down_a_bit, volume_down_a_lot });
             //// BRIGHTER MENU
+            Command brightness_up = new Command("up",
+                () =>
+                {
+                    jack.Print_in_log("Not operated yet.");
+                    return main;
+                });
             //// POPULAR
             List<Command> popular = new List<Command>();
             Command back_to_main_menu = new Command("back", () => { jack.Print_in_log("back"); return main; });
